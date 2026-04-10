@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Sustituye el anillo azul (#3b82f6) y bordes gris-azulados del preflight de Tailwind */
+  *,
+  ::before,
+  ::after,
+  ::backdrop {
+    --tw-ring-color: rgb(29 79 50 / 0.45);
+    border-color: theme("colors.stone.200");
+  }
+
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply min-h-screen font-sans;
+    background-color: theme("colors.surface.DEFAULT");
+    color: theme("colors.ink.DEFAULT");
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: theme("colors.muted.DEFAULT");
+    opacity: 1;
+  }
+
+  /* Evita azul por defecto del navegador en enlaces sin clase de color */
+  :where(a):not([class*="text-"]) {
+    @apply text-brand-600 underline-offset-2 hover:text-brand-700 hover:underline;
+  }
+
+  a:focus-visible {
+    @apply rounded-sm outline-none ring-2 ring-brand-600 ring-offset-2 ring-offset-white;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: theme("colors.ink.DEFAULT");
+    caret-color: theme("colors.brand.600");
+    box-shadow: 0 0 0px 1000px #ffffff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  ::selection {
+    background-color: theme("colors.brand.100");
+    color: theme("colors.ink.DEFAULT");
+  }
+}
